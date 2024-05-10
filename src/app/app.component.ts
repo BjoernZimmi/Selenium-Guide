@@ -10,4 +10,9 @@ import { RouterOutlet } from '@angular/router';
 })
 export class AppComponent {
   title = 'selenium-test-app';
+
+  sendMsg() {
+    console.log('Button was clicked');
+    
+  }
 }

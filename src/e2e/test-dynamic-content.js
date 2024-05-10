@@ -8,8 +8,13 @@ try {
 
     console.log(await dynamicElement.getText());
 
-    await driver.findElement(By.css('button[type="submit"')).click();
+    await driver.findElement(By.css('button[type="submit"]')).click();
 
+    let alert = await driver.wait(until.alertIsPresent(), 10000);
+
+    console.log(await alert.getText());
+
+    await alert.accept();
 
 } finally {
     await driver.quit();
@@ -20,5 +25,6 @@ try {
 
 /**
  * To load the Selenium driver: node D:\Arbeiten\Angular\selenium-test-app\src\e2e\test-dynamic-content.js
+ * Guide: https://www.youtube.com/watch?v=3rbz1Jmo9Qw&t=9s
  *  **/
 testDynamicContent();
