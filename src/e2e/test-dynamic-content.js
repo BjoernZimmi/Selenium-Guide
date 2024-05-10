@@ -8,11 +8,17 @@ try {
 
     console.log(await dynamicElement.getText());
 
+    await driver.findElement(By.css('button[type="submit"')).click();
+
+
 } finally {
     await driver.quit();
-
+    console.log("driver closed");
 }
 
 }
 
+/**
+ * To load the Selenium driver: node D:\Arbeiten\Angular\selenium-test-app\src\e2e\test-dynamic-content.js
+ *  **/
 testDynamicContent();
