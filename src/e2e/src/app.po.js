@@ -1,0 +1,1 @@
+element(by.id('my_button')).getText()
