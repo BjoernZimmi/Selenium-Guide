@@ -1,8 +1,8 @@
 name: Start Push-Workflow
-run-name: ${{ github.actor }} is pushing his branch Selenium Guide
 on: [push]
 jobs:
   install_packages:
+    name: Install Packages
     runs-on: ubuntu-latest
     env:
       ENVIRONMENT: production
@@ -12,10 +12,12 @@ jobs:
         run: npm ci
       - name: Build Angular project
         run: npm run build
-      # - name: Cypress run
-      #   uses: cypress-io/github-action@v6
-      #   with:
-      #     build: npm run build
-      #     start: npm start
-      - name: run Selenium
-        run: 'node src/e2e/test-homepage-load.js'
+
+  run_selenium:
+      name: Run Selenium
+      runs-on: ubuntu-latest
+      steps:
+      - uses: actions/checkout@v4
+      - name: Run Selenium
+        run: node src/e2e/test-homepage-load.js
+      
