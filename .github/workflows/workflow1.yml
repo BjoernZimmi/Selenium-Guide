@@ -1,23 +1,25 @@
 name: Start Push-Workflow
 on: [push]
 jobs:
-  install_packages:
-    name: Install Packages
-    runs-on: ubuntu-latest
-    env:
-      ENVIRONMENT: production
-    steps:
-      - uses: actions/checkout@v4
-      - name: Install dependencies
-        run: npm ci
-      - name: Build Angular project
-        run: npm run build
+  # install_packages:
+  #   name: Install Packages
+  #   runs-on: ubuntu-latest
+  #   env:
+  #     ENVIRONMENT: production
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - name: Install dependencies
+  #       run: npm ci
+  #     - name: Build Angular project
+  #       run: npm run build
 
   run_selenium:
       name: Run Selenium
       runs-on: ubuntu-latest
       steps:
       - uses: actions/checkout@v4
+      - name: Install dependencies
+        run: npm ci
       - name: Run Selenium
         run: node src/e2e/test-homepage-load.js
       
