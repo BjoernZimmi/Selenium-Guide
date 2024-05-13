@@ -1,6 +1,6 @@
 name: Test (parallel)
 
-on: [workflow_dispatch]
+on: [push]
 
 jobs:
   test:
