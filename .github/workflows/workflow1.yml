@@ -1,17 +1,35 @@
+# name: Start Push-Workflow
+# run-name: ${{ github.actor }} is pushing his branch Selenium Guide
+# on: [push]
+# jobs:
+#   install_packages:
+#     runs-on: ubuntu-latest
+#     env:
+#       ENVIRONMENT: production
+#     steps:
+#       - uses: actions/checkout@v4
+#       - name: Install dependencies
+#         run: npm ci
+#       - name: Build Angular project
+#         run: npm run build
+#       - name: run Selenium
+#         run: 'node src/e2e/test-homepage-load.js'
+
+
 name: Start Push-Workflow
 on: [push]
 jobs:
-  # install_packages:
-  #   name: Install Packages
-  #   runs-on: ubuntu-latest
-  #   env:
-  #     ENVIRONMENT: production
-  #   steps:
-  #     - uses: actions/checkout@v4
-  #     - name: Install dependencies
-  #       run: npm ci
-  #     - name: Build Angular project
-  #       run: npm run build
+  install_packages:
+    name: Install Packages
+    runs-on: ubuntu-latest
+    env:
+      ENVIRONMENT: development
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install dependencies
+        run: npm ci
+      - name: Build Angular project
+        run: npm start
 
   run_selenium:
       name: Run Selenium
