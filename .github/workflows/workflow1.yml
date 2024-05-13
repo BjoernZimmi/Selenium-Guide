@@ -1,21 +1,38 @@
-name: Start Push-Workflow
-run-name: ${{ github.actor }} is pushing his branch Selenium Guide
-on: [push]
+# .github/workflows/test-parallel.yml
+name: Test (parallel)
+
+on: [workflow_dispatch]
+
 jobs:
-  install_packages:
+  test:
+    name: Test
     runs-on: ubuntu-latest
-    env:
-      ENVIRONMENT: production
+
+    container:
+      image: node:19
+
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: ['chrome', 'firefox', 'edge']
+
+    services:
+      selenium:
+        image: selenium/standalone-${{ matrix.browser }}
+        options: --shm-size=2gb
+
     steps:
-      - uses: actions/checkout@v4
-      - name: Install dependencies
-        run: npm ci
-      - name: Build Angular project
-        run: npm run build
-      # - name: Cypress run
-      #   uses: cypress-io/github-action@v6
-      #   with:
-      #     build: npm run build
-      #     start: npm start
-      - name: run Selenium
-        run: node src\e2e\test-homepage-load.js
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '19'
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run test
+        env:
+          BROWSER: ${{ matrix.browser }}
+      - uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: ${{ matrix.browser }}
+          path: screenshots/
