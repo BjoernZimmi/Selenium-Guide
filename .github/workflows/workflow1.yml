@@ -1,5 +1,5 @@
 name: Start Push-Workflow
-run-name: ${{ github.actor }} is pushing his branch
+run-name: ${{ github.actor }} is pushing his branch Selenium Guide
 on: [push]
 jobs:
   install_packages:
@@ -17,3 +17,5 @@ jobs:
       #   with:
       #     build: npm run build
       #     start: npm start
+      - name: run Selenium
+        run: node src\e2e\test-homepage-load.js
