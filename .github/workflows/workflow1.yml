@@ -18,4 +18,4 @@ jobs:
       #     build: npm run build
       #     start: npm start
       - name: run Selenium
-        run: node src/e2e/test-homepage-load.js
+        run: node src\e2e\test-homepage-load.js
