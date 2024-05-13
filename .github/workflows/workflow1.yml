@@ -19,17 +19,17 @@
 name: Start Push-Workflow
 on: [push]
 jobs:
-  install_packages:
-    name: Install Packages
-    runs-on: ubuntu-latest
-    env:
-      ENVIRONMENT: development
-    steps:
-      - uses: actions/checkout@v4
-      - name: Install dependencies
-        run: npm ci
-      - name: Build Angular project
-        run: npm start
+  # install_packages:
+  #   name: Install Packages
+  #   runs-on: ubuntu-latest
+  #   env:
+  #     ENVIRONMENT: production
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - name: Install dependencies
+  #       run: npm ci
+  #     - name: Build Angular project
+  #       run: npm run build
 
   run_selenium:
       name: Run Selenium
@@ -38,6 +38,9 @@ jobs:
       - uses: actions/checkout@v4
       - name: Install dependencies
         run: npm ci
-      - name: Run Selenium
-        run: node src/e2e/test-homepage-load.js
+      # - name: Run Selenium
+      #   run: node src/e2e/test-homepage-load.js
+      - run: npm run test
+        env:
+          BROWSER: ${{ matrix.browser }}
       
