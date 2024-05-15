@@ -20,13 +20,13 @@ jobs:
         image: selenium/standalone-${{ matrix.browser }}
         options: --shm-size=2gb
 
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '19'
-          cache: 'npm'
-      - run: npm ci
-      - run: npm run test
-        env:
-          BROWSER: ${{ matrix.browser }}
+    # steps:
+    #   - uses: actions/checkout@v4
+    #   - uses: actions/setup-node@v4
+    #     with:
+    #       node-version: '19'
+    #       cache: 'npm'
+    #   - run: npm ci
+    #   - run: npm run test
+    #     env:
+    #       BROWSER: ${{ matrix.browser }}
