@@ -5,9 +5,9 @@ async function checkhomepage() {
 
     try {
         await driver.get('http://localhost:4200');
-        await driver.wait(until.titleIs('SeleniumTestApp'), 10000);
+        await driver.wait(until.titleIs('Selenium Test App'), 10000);
 
-        console.log(await driver.wait(until.titleIs('SeleniumTestApp'), 10000));
+        console.log(await driver.wait(until.titleIs('Selenium Test App'), 10000));
 
     } finally {
         await driver.quit();
@@ -30,7 +30,7 @@ try {
     await driver.quit();
 
     console.log("driver closed");
-    
+
 }
 
 }
